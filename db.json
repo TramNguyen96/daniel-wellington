@@ -1,24 +1,6 @@
 {
   "users": [
     {
-      "block": true,
-      "id": 1
-    },
-    {
-      "name": "Mèo",
-      "email": "123123",
-      "phoneNumber": "1312",
-      "block": false,
-      "id": 2
-    },
-    {
-      "name": "Tài 121",
-      "email": "ngoctien@gmail.com",
-      "phoneNumber": "121",
-      "block": false,
-      "id": 3
-    },
-    {
       "name": "Tiên",
       "email": "1312",
       "phoneNumber": "1212",
