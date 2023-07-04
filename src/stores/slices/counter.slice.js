@@ -1,10 +1,12 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+
+
 const findAllUsers = createAsyncThunk(
     "findAllUsers",
     async () => {
-        let res = await axios.get(process.env.REACT_APP_SERVER_JSON + 'users');
+        let res = await axios.get(process.env.REACT_APP_SERVER_JSON + 'userList');
         return res.data
     }
 )
@@ -13,7 +15,7 @@ const createNewUsers = createAsyncThunk(
     "createNewUsers",
     async (newUser) => {
         //http://localhost:4000/users
-        let res = await axios.post(process.env.REACT_APP_SERVER_JSON + 'users', newUser);
+        let res = await axios.post(process.env.REACT_APP_SERVER_JSON + 'userList', newUser);
         return res.data
     }
 )
@@ -22,7 +24,7 @@ const deleteUserById = createAsyncThunk(
     "deleteUserByid",
     async (userId) => {
         //http://localhost:4000/users/1
-        let res = await axios.delete(process.env.REACT_APP_SERVER_JSON + 'users/' + userId);
+        let res = await axios.delete(process.env.REACT_APP_SERVER_JSON + 'userList/' + userId);
         return userId
     }
 )
@@ -32,7 +34,7 @@ const updateUser = createAsyncThunk(
     async (dataObj) => {
         console.log("dataObj dataObj", dataObj)
         //http://localhost:4000/users/1   , editData
-        let res = await axios.put(process.env.REACT_APP_SERVER_JSON + 'users/' + dataObj.userId, dataObj.editData);
+        let res = await axios.put(process.env.REACT_APP_SERVER_JSON + 'userList/' + dataObj.userId, dataObj.editData);
         return res.data
     }
 )
@@ -42,7 +44,7 @@ const setStatusUser = createAsyncThunk(
     async (dataObj) => {
         console.log("dataObj dataObj", dataObj)
         //http://localhost:4000/users/1   , editData
-        let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'users/' + dataObj.userId, dataObj.patchData);
+        let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'userList/' + dataObj.userId, dataObj.patchData);
         return res.data
     }
 )
@@ -107,14 +109,17 @@ const counterSlice = createSlice(
                     if (action.meta) {
                         if (action.meta.requestStatus == "pending") {
                             console.log("đã vào pending của api: ", action.type)
+                            // if (action.type == "deleteUserByid/pending") {
+                            //     console.log("trường hợp pending của api delete")
+                            // }
                             state.loading = true;
                         }
                         if (action.meta.requestStatus == "rejected") {
-                            console.log("đã vào rejected của api: ", action.type)
+                            //console.log("đã vào rejected của api: ", action.type)
                             state.loading = false;
                         }
                         if (action.meta.requestStatus == "fulfilled") {
-                            console.log("đã vào fulfilled của api: ", action.type)
+                            //console.log("đã vào fulfilled của api: ", action.type)
                             state.loading = false;
                         }
                     }

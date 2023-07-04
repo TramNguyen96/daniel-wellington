@@ -1,0 +1,23 @@
+.cartJewelleryMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartJewelleryImg img {
+    width: 400px;
+    height: 450px;
+}
+
+.cartJewellery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cartJewelleryItems {
+        background-color: #f5f5f5;
+        width: 200px !important;
+        height: 330px;
+        margin: 10px 20px;
+    }
+}

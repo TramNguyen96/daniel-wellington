@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Thasadith';
+    src: url('Thasadith-BoldItalic.eot');
+    src: url('Thasadith-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('Thasadith-BoldItalic.woff2') format('woff2'),
+        url('Thasadith-BoldItalic.woff') format('woff'),
+        url('Thasadith-BoldItalic.svg#Thasadith-BoldItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Thasadith';
+    src: url('Thasadith-Bold.eot');
+    src: url('Thasadith-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Thasadith-Bold.woff2') format('woff2'),
+        url('Thasadith-Bold.woff') format('woff'),
+        url('Thasadith-Bold.svg#Thasadith-Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Thasadith';
+    src: url('Thasadith-Regular.eot');
+    src: url('Thasadith-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Thasadith-Regular.woff2') format('woff2'),
+        url('Thasadith-Regular.woff') format('woff'),
+        url('Thasadith-Regular.svg#Thasadith-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Thasadith';
+    src: url('Thasadith-Italic.eot');
+    src: url('Thasadith-Italic.eot?#iefix') format('embedded-opentype'),
+        url('Thasadith-Italic.woff2') format('woff2'),
+        url('Thasadith-Italic.woff') format('woff'),
+        url('Thasadith-Italic.svg#Thasadith-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+

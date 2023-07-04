@@ -1,69 +1,103 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import './Navbar.scss'
+import { ShoppingOutlined } from '@ant-design/icons'
+import { UserOutlined } from "@ant-design/icons";
+import { SearchOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLoginActions } from '../../stores/slices/userLogin.slice';
+
 
 export default function Navbar() {
-    const navigator = useNavigate();
+  const userLoginStore = useSelector(store => store.userLoginStore);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  /* Load lai web van ko mat login */
+  useEffect(() => {
+    dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
+  }, [])
+
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-            Navbar
-            </a>
-            <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-            <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="">
-                        Home
-                    </Link>
-                </li>
-                <li className="nav-item dropdown">
-                    <span
-                        className="nav-link dropdown-toggle"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        onClick={() => {
-                            navigator('/about')
-                        }}
-                    >
-                        About
-                    </span>
-                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <span onClick={() => {
-                            navigator('about/my-infor')
-                        }}>
-                            <span className="dropdown-item">
-                                My Infor
-                            </span>
-                        </span>
-                    </ul>
-                </li>
-            </ul>
-            <form className="d-flex">
-                <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                Search
-                </button>
-            </form>
-            </div>
+    <div className='containerNavbar'>
+      <div className='navbar'>
+        <div className='iconNavbar'>
+          <a href=""><SearchOutlined /></a>
         </div>
-    </nav>
+        <div className='logoNavbar'>
+          <p>DANIEL  WELLINGTON</p>
+        </div>
+        <div className='iconNavbar'>
+          {userLoginStore.userInfor == null ?
+            <Link to="/login"><UserOutlined /></Link>
+            :
+            (<Link to="/" style={{ textDecoration: 'none' }} >
+              <div class="dropdown">
+                <img src={userLoginStore.userInfor.avatar} alt="" className='avatar' />
+                <div class="dropdownContent">
+                  <a href="#"><i class="fa-regular fa-address-card"></i>Profile</a>
+                  <a href="#" onClick={()=>{
+                    alert("Are you sure want to logout?")
+                    localStorage.removeItem("token")
+                    dispatch(userLoginActions.logOut())
+                    navigate("/")
+
+                  }} ><i class="fa-solid fa-right-from-bracket"></i>LogOut</a>
+                  
+                </div>
+              </div>
+              Hi, {` ${userLoginStore.userInfor?.firstName} `}{`${userLoginStore.userInfor?.lastName}`} !
+              
+            </Link>
+            )
+
+          }
+
+          <Link to="/carts"><ShoppingOutlined /></Link>
+        </div>
+      </div>
+      <div className='linkNavbar'>
+        <Link to="/">HOME</Link>
+
+        <div className="dropdown">
+          <div
+            className=""
+            id="dropdownMenuButton"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+            style={{ paddingTop: '20px', fontWeight: 'bold', color: '#cdcfd2' }}
+          >
+            SHOP
+          </div>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ color: '#000', listStyle: 'none' }}>
+            <li>
+              <Link className="dropdown-item" to="/shop/MenWatch">
+                MEN'S WATCHES
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/shop/WomenWatch">
+                WOMEN'S WATCHES
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/shop/Jewellery">
+                JEWELLERY
+              </Link>
+            </li>
+            <li>
+              <Link className="dropdown-item" to="/shop/combo">
+                COMBO
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+
+        <Link to="">ABOUT US</Link>
+      </div>
+    </div>
+
   )
 }

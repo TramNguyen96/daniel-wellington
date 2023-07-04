@@ -1,0 +1,23 @@
+.cartProductWomenMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartProductWomenImg img {
+    width: 400px;
+    height: 450px;
+}
+
+.cartProductWomen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .cartProductWomenItems {
+        background-color: #f5f5f5;
+        width: 200px !important;
+        height: 330px;
+        margin: 10px 20px;
+    }
+}
