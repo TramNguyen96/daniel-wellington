@@ -6,7 +6,9 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLoginActions } from '../../stores/slices/userLogin.slice';
+import { userLoginActions } from '../../stores/slices/userLogin.slice'; 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 
 export default function Navbar() {
@@ -23,7 +25,7 @@ export default function Navbar() {
     <div className='containerNavbar'>
       <div className='navbar'>
         <div className='iconNavbar'>
-          <a href=""><SearchOutlined /></a>
+          <a href=""><SearchOutlined /></a>  
         </div>
         <div className='logoNavbar'>
           <p>DANIEL  WELLINGTON</p>
@@ -32,23 +34,23 @@ export default function Navbar() {
           {userLoginStore.userInfor == null ?
             <Link to="/login"><UserOutlined /></Link>
             :
-            (<Link to="/" style={{ textDecoration: 'none' }} >
-              <div class="dropdown">
+            (<Link to="/" style={{ textDecoration: 'none'}} >
+              <div className="dropdown">
                 <img src={userLoginStore.userInfor.avatar} alt="" className='avatar' />
-                <div class="dropdownContent">
-                  <a href="#"><i class="fa-regular fa-address-card"></i>Profile</a>
-                  <a href="#" onClick={()=>{
+                <div className="dropdownContent">
+                  <a href="#"><i className="fa-regular fa-address-card"></i>Profile</a>
+                  <a href="#" onClick={() => {
                     alert("Are you sure want to logout?")
                     localStorage.removeItem("token")
                     dispatch(userLoginActions.logOut())
                     navigate("/")
 
-                  }} ><i class="fa-solid fa-right-from-bracket"></i>LogOut</a>
-                  
+                  }} ><i className="fa-solid fa-right-from-bracket"></i>LogOut</a>
+
                 </div>
               </div>
               Hi, {` ${userLoginStore.userInfor?.firstName} `}{`${userLoginStore.userInfor?.lastName}`} !
-              
+
             </Link>
             )
 

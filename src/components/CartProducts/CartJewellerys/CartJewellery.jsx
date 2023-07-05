@@ -1,11 +1,11 @@
 import React from 'react';
 import './CartJewellery.scss';
-import {Fragment} from 'react';
+import { Fragment } from 'react';
 import { Card } from 'antd';
 const { Meta } = Card;
 
 export default function CartJewellery() {
-     const listCartProduct = [
+  const listCartProduct = [
     {
       id: "1",
       img: "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_1.png?alt=media&token=70725d89-4b78-4790-9e80-a6d0304aa8e8",
@@ -30,37 +30,37 @@ export default function CartJewellery() {
       name: "Emalie Earrings",
       price: "109"
     }
-    
+
   ];
   return (
     <div>
-        <Fragment>
-        <div className='cartJewelleryMain'> 
-             <div className='cartJewelleryImg'>
-                <img src="https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_main.jpg?alt=media&token=6a9a7384-51ec-488b-9e97-df0672737dae" alt="cart_jewell_main" />
-            </div>
-            <div className='cartJewellery'>
-            {listCartProduct.map((item)=>(
-                        <div>
-                            <Card
-                                className='cartJewelleryItems'
-                                hoverable
-                                style={{
-                                width: 240,
-                                }}
-                                cover={<img alt={item.name} src={item.img} />}
-                            >
-                                <Meta title={item.name}/>
-                                <p>$ {item.price}</p>
-                                <button type="button" class="btn btn-outline-danger">Add To Cart</button>
-                            </Card>
-                        </div>
+      <Fragment>
+        <div className='cartJewelleryMain'>
+          <div className='cartJewelleryImg'>
+            <img src="https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_main.jpg?alt=media&token=6a9a7384-51ec-488b-9e97-df0672737dae" alt="cart_jewell_main" />
+          </div>
+          <div className='cartJewellery'>
+            {listCartProduct.map((item) => (
+              <div>
+                <Card
+                  className='cartJewelleryItems'
+                  hoverable
+                  style={{
+                    width: 240,
+                  }}
+                  cover={<img alt={item.name} src={item.img} />}
+                >
+                  <Meta title={item.name} />
+                  <p>$ {item.price}</p>
+                  <button type="button" className="btn btn-outline-danger">Add To Cart</button>
+                </Card>
+              </div>
             ))}
-                
-            </div>
-            
+
+          </div>
+
         </div>
-    </Fragment>
+      </Fragment>
     </div>
   )
 }

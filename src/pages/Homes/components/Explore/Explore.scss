@@ -1,0 +1,51 @@
+
+.bigTitle{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 30px;
+
+}
+.Explore{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.mainExplore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    position: relative;
+    padding-left: 5px;
+    
+    .titleExplore{
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        padding: 10px;
+        font-size: x-large;
+        font-weight: bold;
+        z-index: 1;
+    }
+    .imageExplore img{
+            width: 300px;
+            height: 330px;
+            overflow: hidden;
+        }
+        .imageExplore:hover img{
+            transform: scale(1.1);
+            
+        }
+    .textExplore{
+        border: 1px solid #fff;
+        padding: 15px;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        background-color: rgba(0, 0, 0, 0.88);
+    }
+}

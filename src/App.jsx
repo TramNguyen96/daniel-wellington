@@ -2,16 +2,9 @@ import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import LazyLoad from "./LazyLoad";
 import Navbar from "@components/Navbars/Navbar";
-import Carousels from "./components/Carousels/Carousel";
-import Resizable from "./components/CartProducts/CartCombos/CartCombo";
-import CartJewellery from "@components/CartProducts/CartJewellerys/CartJewellery";
-import CartProductMen from "@components/CartProducts/CartProductMens/CartProductMen";
-import CartProductWomen from "@components/CartProducts/CartProductWomens/CartProductWomen";
 import Footer from "@components/Footers/Footer";
-import OfferFooter from "@components/Footers/OfferFooter";
 import Header from "@components/Headers/Header";
-import Home from "./pages/Homes/Home";
-import Banner from "./pages/Homes/components/Banners/Banner";
+import Home from "@pages/Homes/Home";
 
 function App() {
   return (
@@ -57,7 +50,7 @@ function App() {
             )()}
           />
           <Route
-            path="/detailproducts"
+            path="/detailproducts/:id"
             element={LazyLoad(() =>
               import("@pages/Homes/components/ListCartDetails/ListCartDetails")
             )()}

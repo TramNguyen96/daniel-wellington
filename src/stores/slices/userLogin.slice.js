@@ -14,6 +14,16 @@ const login = createAsyncThunk(
     }
 )
 
+const updateCart = createAsyncThunk(
+    "updateCarts",
+    async (dataObj) => {
+        // localhost:4000/users/1
+        //console.log("dataObj",dataObj)
+        let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'users/' + dataObj.userId, dataObj.carts);
+        return res.data
+    }
+)
+
 const checkTokenLocal = createAsyncThunk(
     "checkTokenLocal",
     async (token) => {
@@ -80,6 +90,11 @@ const userLoginSlice = createSlice(
                     }
                 }
             });
+            // update cart
+            builder.addCase(updateCart.fulfilled, (state, action) => {
+                state.userInfor = action.payload
+                localStorage.removeItem("carts")
+            });
             // check token
             builder.addCase(checkTokenLocal.fulfilled, (state, action) => {
                 let deToken = checkToken(action.payload.token, process.env.REACT_APP_JWT_KEY, process.env.REACT_APP_JWT_KEY);
@@ -133,6 +148,7 @@ const userLoginSlice = createSlice(
 export const userLoginActions = {
     ...userLoginSlice.actions,
     login,
-    checkTokenLocal
+    checkTokenLocal,
+    updateCart
 }
 export default userLoginSlice.reducer;

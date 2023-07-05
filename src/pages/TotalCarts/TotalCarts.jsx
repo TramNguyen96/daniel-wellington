@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     MDBBtn,
     MDBCard,
@@ -11,8 +11,51 @@ import {
     MDBRow,
     MDBTypography,
 } from "mdb-react-ui-kit";
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../stores/slices/product.slice";
+import { userLoginActions } from '../../stores/slices/userLogin.slice';
 
 export default function CartCheckout() {
+    const [cartData, setCartData] = useState([])
+    const dispatch = useDispatch()
+    const productStore = useSelector(store => store.productStore)
+    const userLoginStore = useSelector(store => store.userLoginStore)
+    const [quantity, setQuantity] = useState(1)
+
+    useEffect(() => {
+        dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
+    }, []);
+    useEffect(() => {
+        if (userLoginStore.userInfor !== null) {
+
+            let carts = [...userLoginStore.userInfor.carts]
+
+            setCartData(carts)
+        }
+    }, [userLoginStore.userInfor])
+
+    function handleDeleteProduct(productId) {
+        console.log(productId);
+
+        let carts = userLoginStore.userInfor.carts
+        // console.log(carts);
+
+        let updatedCart = carts.filter((product) => product.productId !== productId)
+
+        setCartData(updatedCart)
+
+        // console.log(updatedCart);
+
+        dispatch(userLoginActions.updateCart(
+            {
+                userId: userLoginStore.userInfor.id,
+                carts: {
+                    carts: updatedCart
+                }
+            }
+        ))
+    }
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
             <MDBContainer className="h-100 py-5">
@@ -29,145 +72,90 @@ export default function CartCheckout() {
                                             Your Cart
                                         </MDBTypography>
 
-                                        <div className="d-flex align-items-center mb-5">
-                                            <div className="flex-shrink-0">
-                                                <MDBCardImage
-                                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                                    fluid
-                                                    style={{ width: "150px" }}
-                                                    alt="Generic placeholder image"
-                                                />
-                                            </div>
+                                        {cartData?.map((item) => (
+                                            <div className="d-flex align-items-center mb-5">
+                                                <div className="flex-shrink-0">
+                                                    <MDBCardImage
+                                                        src={item.img}
+                                                        fluid
+                                                        style={{ width: "150px" }}
+                                                        alt="Generic placeholder image"
+                                                    />
+                                                </div>
 
-                                            <div className="flex-grow-1 ms-3">
-                                                <a href="#!" className="float-end text-black">
-                                                    <MDBIcon fas icon="times" />
-                                                </a>
-                                                <MDBTypography tag="h5" className="text-primary">
-                                                    Samsung Galaxy M11 64GB
-                                                </MDBTypography>
-                                                <MDBTypography tag="h6" style={{ color: "#9e9e9e" }}>
-                                                    Color: white
-                                                </MDBTypography>
+                                                <div className="flex-grow-1 ms-3">
+                                                    <a href="#!" className="float-end text-black" onClick={() => handleDeleteProduct(item.productId)}>
+                                                        <MDBIcon fas icon="times" />
+                                                    </a>
+                                                    <MDBTypography tag="h5" className="text-dark">
+                                                        {item.name}
+                                                    </MDBTypography>
 
-                                                <div className="d-flex align-items-center">
-                                                    <p className="fw-bold mb-0 me-5 pe-3">799$</p>
+                                                    <div className="d-flex align-items-center">
+                                                        <p className="fw-bold mb-0 me-5 pe-3">$ {item.price}</p>
 
-                                                    <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="minus" />
-                                                        </MDBBtn>
+                                                        <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
+                                                            <button type="button" class="btn btn-outline-dark"
+                                                                onClick={(e) => {
+                                                                    if (Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) > 1) {
+                                                                        e.target.parentNode.querySelector(".quantityTotalCart").innerText =
+                                                                            Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) - 1
+                                                                    }
+                                                                }}
+                                                            >-</button>
 
-                                                        <MDBInput type="number" min="0" defaultValue={1} size="sm" />
+                                                            <span className="quantityTotalCart" style={{ fontSize: '20px', margin: '0px 10px', fontWeight: 'bold' }}
 
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="plus" />
-                                                        </MDBBtn>
-                                                    </MDBCol>
+                                                            >{item.quantity}</span>
+
+                                                            <button type="button" class="btn btn-outline-dark"
+                                                                onClick={(e) => {
+                                                                    e.target.parentNode.querySelector(".quantityTotalCart").innerText =
+                                                                        Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) + 1
+                                                                }}
+                                                            >+</button>
+                                                        </MDBCol>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        ))}
+
+
+                                        <hr
+                                            className="mb-4"
+                                            style={{
+                                                height: "2px",
+                                                backgroundColor: "#ccc",
+                                                opacity: 1,
+                                            }}
+                                        />
+
+                                        <div className="d-flex justify-content-between px-x">
+                                            <p className="fw-bold">Subtotal:</p>
+                                            <p className="fw-bold">$</p>
                                         </div>
-
-                                        <div className="d-flex align-items-center mb-5">
-                                            <div className="flex-shrink-0">
-                                                <MDBCardImage
-                                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/6.webp"
-                                                    fluid
-                                                    style={{ width: "150px" }}
-                                                    alt="Generic placeholder image"
-                                                />
-                                            </div>
-
-                                            <div className="flex-grow-1 ms-3">
-                                                <a href="#!" className="float-end text-black">
-                                                    <MDBIcon fas icon="times" />
-                                                </a>
-                                                <MDBTypography tag="h5" className="text-primary">
-                                                    Headphones Bose 35 II
-                                                </MDBTypography>
-                                                <MDBTypography tag="h6" style={{ color: "#9e9e9e" }}>
-                                                    Color: red
-                                                </MDBTypography>
-
-                                                <div className="d-flex align-items-center">
-                                                    <p className="fw-bold mb-0 me-5 pe-3">239$</p>
-
-                                                    <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="minus" />
-                                                        </MDBBtn>
-
-                                                        <MDBInput type="number" min="0" defaultValue={1} size="sm" />
-
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="plus" />
-                                                        </MDBBtn>
-                                                    </MDBCol>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="d-flex align-items-center mb-5">
-                                            <div className="flex-shrink-0">
-                                                <MDBCardImage
-                                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
-                                                    fluid
-                                                    style={{ width: "150px" }}
-                                                    alt="Generic placeholder image"
-                                                />
-                                            </div>
-
-                                            <div className="flex-grow-1 ms-3">
-                                                <a href="#!" className="float-end text-black">
-                                                    <MDBIcon fas icon="times" />
-                                                </a>
-                                                <MDBTypography tag="h5" className="text-primary">
-                                                    iPad 9.7 6-gen WiFi 32GB
-                                                </MDBTypography>
-                                                <MDBTypography tag="h6" style={{ color: "#9e9e9e" }}>
-                                                    Color: rose pink
-                                                </MDBTypography>
-
-                                                <div className="d-flex align-items-center">
-                                                    <p className="fw-bold mb-0 me-5 pe-3">659$</p>
-
-                                                    <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="minus" />
-                                                        </MDBBtn>
-
-                                                        <MDBInput type="number" min="0" defaultValue={1} size="sm" />
-
-                                                        <MDBBtn color="link" className="px-2">
-                                                            <MDBIcon fas icon="plus" />
-                                                        </MDBBtn>
-                                                    </MDBCol>
-                                                </div>
-                                            </div>
+                                        <div className="d-flex justify-content-between px-x">
+                                            <p className="fw-bold">Shipping:</p>
+                                            <p className="fw-bold">5$</p>
                                         </div>
 
                                         <hr
                                             className="mb-4"
                                             style={{
                                                 height: "2px",
-                                                backgroundColor: "#1266f1",
+                                                backgroundColor: "#ccc",
                                                 opacity: 1,
                                             }}
                                         />
 
-                                        <div className="d-flex justify-content-between px-x">
-                                            <p className="fw-bold">Discount:</p>
-                                            <p className="fw-bold">95$</p>
-                                        </div>
                                         <div
                                             className="d-flex justify-content-between p-2 mb-2"
-                                            style={{ backgroundColor: "#e1f5fe" }}
                                         >
                                             <MDBTypography tag="h5" className="fw-bold mb-0">
                                                 Total:
                                             </MDBTypography>
                                             <MDBTypography tag="h5" className="fw-bold mb-0">
-                                                2261$
+
                                             </MDBTypography>
                                         </div>
                                     </MDBCol>
@@ -228,19 +216,19 @@ export default function CartCheckout() {
                                                 <a href="#!"> obcaecati sapiente</a>.
                                             </p>
 
-                                            <MDBBtn block size="lg">
-                                                Buy now
-                                            </MDBBtn>
+                                            <button type="button" class="btn btn-dark"
+
+                                            >CHECKOUT</button>
 
                                             <MDBTypography
                                                 tag="h5"
                                                 className="fw-bold mb-5"
-                                                style={{ position: "absolute", bottom: "0" }}
+                                                style={{ marginTop: '10px' }}
                                             >
-                                                <a href="#!">
+                                                <Link to="/" style={{ textDecoration: 'none', color: '#000' }} >
                                                     <MDBIcon fas icon="angle-left me-2" />
-                                                    Back to shopping
-                                                </a>
+                                                    Return to shopping
+                                                </Link>
                                             </MDBTypography>
                                         </form>
                                     </MDBCol>

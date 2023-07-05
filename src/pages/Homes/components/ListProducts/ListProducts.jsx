@@ -2,40 +2,26 @@ import React, { useEffect, useState } from 'react'
 import "./ListProducts.scss"
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../../../stores/slices/product.slice';
-import { RightCircleOutlined } from '@ant-design/icons'
-import {Link} from 'react-router-dom'
-import {
-    MDBBtn,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-} from 'mdb-react-ui-kit';
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Card } from 'antd';
 const { Meta } = Card;
 
 
 export default function ListProducts() {
-    const [centredModal, setCentredModal] = useState(false);
-    const toggleShow = () => setCentredModal(!centredModal);
-
     const dispatch = useDispatch();
     const productStore = useSelector(store => store.productStore)
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(productActions.findAllProducts())
     }, [])
     // console.log(productStore.listProducts)
 
-    const handleCreatProducts = () => {
-        dispatch(productActions.creatProducts({
-            productId: Date.now(),
-            quantity: 1,
-        }))
-    }
+    // useEffect(() => {
+    //     dispatch(productActions.filterProductById(id))
+    // }, [id])
+    // console.log(productStore.listProducts)
+
     return (
         <div className='cartProductMenMain'>
             <div className='cartProductMenImg'>
@@ -54,8 +40,10 @@ export default function ListProducts() {
                         >
                             <Meta title={item.name} />
                             <p>$ {item.price}</p>
-                            <Link to="/detailproducts" >
-                                <button type="button" class="btn btn-outline-dark">View More</button>
+                            <Link to={"/detailproducts/" + item.id} >
+                                <button type="button" class="btn btn-outline-dark"
+
+                                >View More</button>
                             </Link>
                         </Card>
                     </div>

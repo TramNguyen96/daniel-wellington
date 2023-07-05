@@ -1,159 +1,173 @@
 {
-    "listProduct": [
+  "listProduct": [
+    {
+      "id": "1",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_1.png?alt=media&token=9fac32a1-37c6-4501-8ecb-e799e02e471c",
+      "name": "Iconic Chronograph Sheffield RG",
+      "price": "299",
+      "type": "MenWatch"
+    },
+    {
+      "id": "2",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_3.png?alt=media&token=9d42cc4c-e0de-41da-a367-2f13e860efbd",
+      "name": "Petite Evergold",
+      "price": "189",
+      "type": "MenWatch"
+    },
+    {
+      "id": "3",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_4.png?alt=media&token=bd4256e3-71a7-49fa-b68d-0ebf7a84bb1e",
+      "name": "Iconic Chronograph  Link Onyx G",
+      "price": "319",
+      "type": "MenWatch"
+    },
+    {
+      "id": "4",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_5.png?alt=media&token=d5304022-0fce-42e0-874f-0073589b5fde",
+      "name": "Classic Warwick",
+      "price": "229",
+      "type": "MenWatch"
+    },
+    {
+      "id": "5",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_1.png?alt=media&token=79aa3f60-19af-4433-94bb-1cc8b8f70a26",
+      "name": "Quadro Lumine 5-Link Melrose MOP",
+      "price": "100",
+      "type": "WomenWatch"
+    },
+    {
+      "id": "6",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_2.png?alt=media&token=100b4a6a-df18-4c85-b1e3-4bceeb2ab361",
+      "name": "Petite Rosewater",
+      "price": "149",
+      "type": "WomenWatch"
+    },
+    {
+      "id": "7",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_3.png?alt=media&token=3196be15-4fd6-49d5-8858-bc1c1d8a59e9",
+      "name": "Petite York",
+      "price": "199",
+      "type": "WomenWatch"
+    },
+    {
+      "id": "8",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_4.png?alt=media&token=b53805d9-0e43-4610-9c33-85586771831c",
+      "name": "Quadro Lumine Pressed Piano MOP",
+      "price": "279",
+      "type": "WomenWatch"
+    },
+    {
+      "id": "9",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_1.png?alt=media&token=70725d89-4b78-4790-9e80-a6d0304aa8e8",
+      "name": "Elan Lumine Necklace",
+      "price": "139",
+      "type": "Jewellery"
+    },
+    {
+      "id": "10",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart-jewell_2.png?alt=media&token=a1f03d9b-7c33-4f58-b1cc-a98587e033a0",
+      "name": "Elan Unity Necklace",
+      "price": "99",
+      "type": "Jewellery"
+    },
+    {
+      "id": "11",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_3.png?alt=media&token=c9e229ba-d5fa-4787-a211-213587442832",
+      "name": "Emalie Earrings",
+      "price": "89",
+      "type": "Jewellery"
+    },
+    {
+      "id": "12",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_4.png?alt=media&token=1089952d-eb34-40ad-921a-6d72f437cb0a",
+      "name": "Emalie Earrings",
+      "price": "109",
+      "type": "Jewellery"
+    },
+    {
+      "id": "13",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_1.png?alt=media&token=a419961f-ef59-4621-ac41-6b4a18e99732",
+      "name": "Petite 28 Evergold White + Classic Bracelet",
+      "price": "258",
+      "type": "combo"
+    },
+    {
+      "id": "14",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_2.png?alt=media&token=6c58c981-ab38-4823-96ae-4ca4624eded0",
+      "name": "Petite St Mawes + Classic Bracelet",
+      "price": "248",
+      "type": "combo"
+    },
+    {
+      "id": "15",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_3.png?alt=media&token=b7f058ac-0b26-44c5-8f2b-88e804d0f639",
+      "name": "Quadro Lumine Pressed Piano + Elan Unity Bracelet",
+      "price": "358",
+      "type": "combo"
+    },
+    {
+      "id": "16",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_4.png?alt=media&token=47d7aaa3-f2cc-4aa2-8f54-f5196100c06d",
+      "name": "Iconic Link Black + Classic Bracelet",
+      "price": "308",
+      "type": "combo"
+    },
+    {
+      "id": "17",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_5.png?alt=media&token=390dc733-0ed2-46bf-ba0e-c61672560004",
+      "name": "Petite Lumine 5-link two-tone + Classic Bracelet",
+      "price": "298",
+      "type": "combo"
+    },
+    {
+      "id": "18",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_6.png?alt=media&token=a44fc985-3c48-4d4e-8344-3c8bfd0f1b4d",
+      "name": "Quadro Lumine Pressed Piano + Elan Unity Bracelet",
+      "price": "358",
+      "type": "combo"
+    },
+    {
+      "id": "19",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_7.png?alt=media&token=4ad0487a-1ced-4c1d-8f0d-7f1c9b463aa2",
+      "name": "Quadro Pressed Melrose Black + Classic Bracelet",
+      "price": "298",
+      "type": "combo"
+    },
+    {
+      "id": "20",
+      "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcombo_8.png?alt=media&token=7d50b3b5-5d2e-4d8f-ab3e-0976ece13e11",
+      "name": "Quadro Pressed Melrose Green + Classic Bracelet",
+      "price": "298",
+      "type": "combo"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userName": "admin",
+      "password": "123",
+      "isAdmin": true,
+      "firstName": "Tram",
+      "lastName": "Nguyen",
+      "email": "tramnp@gmail.com",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar.jpg?alt=media&token=a55ec290-3e56-4630-bd93-f95df10f1c11",
+      "carts": [
         {
-            "id": "1",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_1.png?alt=media&token=9fac32a1-37c6-4501-8ecb-e799e02e471c",
-            "name": "Iconic Chronograph Sheffield RG",
-            "price": "299",
-            "type": "MenWatch"
+          "productId": "6",
+          "quantity": 5,
+          "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_2.png?alt=media&token=100b4a6a-df18-4c85-b1e3-4bceeb2ab361",
+          "name": "Petite Rosewater",
+          "price": "149"
         },
         {
-            "id": "2",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_3.png?alt=media&token=9d42cc4c-e0de-41da-a367-2f13e860efbd",
-            "name": "Petite Evergold",
-            "price": "189",
-            "type": "MenWatch"
-        },
-        {
-            "id": "3",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_4.png?alt=media&token=bd4256e3-71a7-49fa-b68d-0ebf7a84bb1e",
-            "name": "Iconic Chronograph  Link Onyx G",
-            "price": "319",
-            "type": "MenWatch"
-        },
-        {
-            "id": "4",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_5.png?alt=media&token=d5304022-0fce-42e0-874f-0073589b5fde",
-            "name": "Classic Warwick",
-            "price": "229",
-            "type": "MenWatch"
-        },
-        {
-            "id": "5",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_1.png?alt=media&token=79aa3f60-19af-4433-94bb-1cc8b8f70a26",
-            "name": "Quadro Lumine 5-Link Melrose MOP",
-            "price": "100",
-            "type": "WomenWatch"
-        },
-        {
-            "id": "6",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_2.png?alt=media&token=100b4a6a-df18-4c85-b1e3-4bceeb2ab361",
-            "name": "Petite Rosewater",
-            "price": "149",
-            "type": "WomenWatch"
-        },
-        {
-            "id": "7",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_3.png?alt=media&token=3196be15-4fd6-49d5-8858-bc1c1d8a59e9",
-            "name": "Petite York",
-            "price": "199",
-            "type": "WomenWatch"
-        },
-        {
-            "id": "8",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartWomen%2Fcart_women_4.png?alt=media&token=b53805d9-0e43-4610-9c33-85586771831c",
-            "name": "Quadro Lumine Pressed Piano MOP",
-            "price": "279",
-            "type": "WomenWatch"
-        },
-        {
-            "id": "9",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_1.png?alt=media&token=70725d89-4b78-4790-9e80-a6d0304aa8e8",
-            "name": "Elan Lumine Necklace",
-            "price": "139",
-            "type": "Jewellery"
-        },
-        {
-            "id": "10",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart-jewell_2.png?alt=media&token=a1f03d9b-7c33-4f58-b1cc-a98587e033a0",
-            "name": "Elan Unity Necklace",
-            "price": "99",
-            "type": "Jewellery"
-        },
-        {
-            "id": "11",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_3.png?alt=media&token=c9e229ba-d5fa-4787-a211-213587442832",
-            "name": "Emalie Earrings",
-            "price": "89",
-            "type": "Jewellery"
-        },
-        {
-            "id": "12",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart_jewell_4.png?alt=media&token=1089952d-eb34-40ad-921a-6d72f437cb0a",
-            "name": "Emalie Earrings",
-            "price": "109",
-            "type": "Jewellery"
-        },
-        {
-            "id": "13",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_1.png?alt=media&token=a419961f-ef59-4621-ac41-6b4a18e99732",
-            "name": "Petite 28 Evergold White + Classic Bracelet",
-            "price": "258",
-            "type": "combo"
-        },
-        {
-            "id": "14",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_2.png?alt=media&token=6c58c981-ab38-4823-96ae-4ca4624eded0",
-            "name": "Petite St Mawes + Classic Bracelet",
-            "price": "248",
-            "type": "combo"
-        },
-        {
-            "id": "15",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_3.png?alt=media&token=b7f058ac-0b26-44c5-8f2b-88e804d0f639",
-            "name": "Quadro Lumine Pressed Piano + Elan Unity Bracelet",
-            "price": "358",
-            "type": "combo"
-        },
-        {
-            "id": "16",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_4.png?alt=media&token=47d7aaa3-f2cc-4aa2-8f54-f5196100c06d",
-            "name": "Iconic Link Black + Classic Bracelet",
-            "price": "308",
-            "type": "combo"
-        },
-        {
-            "id": "17",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_5.png?alt=media&token=390dc733-0ed2-46bf-ba0e-c61672560004",
-            "name": "Petite Lumine 5-link two-tone + Classic Bracelet",
-            "price": "298",
-            "type": "combo"
-        },
-        {
-            "id": "18",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_6.png?alt=media&token=a44fc985-3c48-4d4e-8344-3c8bfd0f1b4d",
-            "name": "Quadro Lumine Pressed Piano + Elan Unity Bracelet",
-            "price": "358",
-            "type": "combo"
-        },
-        {
-            "id": "19",
-            "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartCombo%2Fcart_combo_7.png?alt=media&token=4ad0487a-1ced-4c1d-8f0d-7f1c9b463aa2",
-            "name": "Quadro Pressed Melrose Black + Classic Bracelet",
-            "price": "298",
-            "type": "combo"
+          "productId": "10",
+          "quantity": 2,
+          "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartJewellery%2Fcart-jewell_2.png?alt=media&token=a1f03d9b-7c33-4f58-b1cc-a98587e033a0",
+          "name": "Elan Unity Necklace",
+          "price": "99"
         }
-    ],
-    "users": [
-        {
-            "id": 1,
-            "userName": "admin",
-            "password": "123",
-            "isAdmin": true,
-            "firstName": "Tram",
-            "lastName": "Nguyen",
-            "email": "tramnp@gmail.com",
-            "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar.jpg?alt=media&token=a55ec290-3e56-4630-bd93-f95df10f1c11",
-            "carts": [
-                {
-                "productId": 1,
-                "quantity": 5,
-                "name":"Classic Warwick",
-                "price":"100"
-                }
-            ]
-        }
-        
-    ]
-    
+       
+      ]
+    }
+  ]
 }
