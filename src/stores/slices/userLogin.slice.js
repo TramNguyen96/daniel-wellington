@@ -18,7 +18,6 @@ const updateCart = createAsyncThunk(
     "updateCarts",
     async (dataObj) => {
         // localhost:4000/users/1
-        //console.log("dataObj",dataObj)
         let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'users/' + dataObj.userId, dataObj.carts);
         return res.data
     }
@@ -93,7 +92,6 @@ const userLoginSlice = createSlice(
             // update cart
             builder.addCase(updateCart.fulfilled, (state, action) => {
                 state.userInfor = action.payload
-                localStorage.removeItem("carts")
             });
             // check token
             builder.addCase(checkTokenLocal.fulfilled, (state, action) => {

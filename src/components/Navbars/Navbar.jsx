@@ -2,13 +2,11 @@ import React, { useEffect } from 'react'
 import './Navbar.scss'
 import { ShoppingOutlined } from '@ant-design/icons'
 import { UserOutlined } from "@ant-design/icons";
-import { SearchOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLoginActions } from '../../stores/slices/userLogin.slice'; 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import SearchByName from '../../pages/SearchByName/SearchByName';
 
 
 export default function Navbar() {
@@ -25,7 +23,7 @@ export default function Navbar() {
     <div className='containerNavbar'>
       <div className='navbar'>
         <div className='iconNavbar'>
-          <a href=""><SearchOutlined /></a>  
+            <SearchByName/>
         </div>
         <div className='logoNavbar'>
           <p>DANIEL  WELLINGTON</p>

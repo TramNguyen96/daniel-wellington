@@ -26,35 +26,135 @@ export default function CartCheckout() {
     useEffect(() => {
         dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
     }, []);
+
     useEffect(() => {
         if (userLoginStore.userInfor !== null) {
-
             let carts = [...userLoginStore.userInfor.carts]
-
             setCartData(carts)
+        } else {
+            if (localStorage.getItem("carts")) {
+                setCartData(JSON.parse(localStorage.getItem("carts")))
+            }
         }
     }, [userLoginStore.userInfor])
 
-    function handleDeleteProduct(productId) {
-        console.log(productId);
-
-        let carts = userLoginStore.userInfor.carts
-        // console.log(carts);
-
-        let updatedCart = carts.filter((product) => product.productId !== productId)
-
-        setCartData(updatedCart)
-
-        // console.log(updatedCart);
-
-        dispatch(userLoginActions.updateCart(
-            {
-                userId: userLoginStore.userInfor.id,
-                carts: {
-                    carts: updatedCart
+    function handleUpdateCart(type, productId) {
+        // type => 1: +, 2: -, 3: delete
+        if (localStorage.getItem("token")) {
+            // online
+            if (type == 1) {
+                let cartTemp = [...userLoginStore.userInfor.carts];
+                cartTemp = cartTemp.map(item => {
+                    if (item.productId == productId) {
+                        let objTemp = Object.assign({}, item);
+                        objTemp.quantity++;
+                        return objTemp
+                    }
+                    return item;
+                })
+                if (!userLoginStore.loading) {
+                    dispatch(userLoginActions.updateCart(
+                        {
+                            userId: userLoginStore.userInfor.id,
+                            carts: {
+                                carts: cartTemp
+                            }
+                        }
+                    ))
                 }
             }
-        ))
+            if (type == 2) {
+                let cartTemp = [...userLoginStore.userInfor.carts];
+                for (let i in cartTemp) {
+                    if (cartTemp[i].productId == productId) {
+                        if (cartTemp[i].quantity == 1) {
+                            if (window.confirm("Ban co muon xoa khong?")) {
+                                cartTemp.splice(i, 1)
+                            }
+                        } else {
+                            let objTemp = Object.assign({}, cartTemp[i]);
+                            objTemp.quantity--;
+                            cartTemp[i] = objTemp;
+                        }
+                        break
+                    }
+                }
+                if (!userLoginStore.loading) {
+                    dispatch(userLoginActions.updateCart(
+                        {
+                            userId: userLoginStore.userInfor.id,
+                            carts: {
+                                carts: cartTemp
+                            }
+                        }
+                    ))
+                }
+            }
+            if (type == 3) {
+                let cartTemp = [...userLoginStore.userInfor.carts];
+                for (let i in cartTemp) {
+                    if (cartTemp[i].productId == productId) {
+                        cartTemp.splice(i, 1)
+                        break
+                    }
+                }
+                if (!userLoginStore.loading) {
+                    dispatch(userLoginActions.updateCart(
+                        {
+                            userId: userLoginStore.userInfor.id,
+                            carts: {
+                                carts: cartTemp
+                            }
+                        }
+                    ))
+                }
+            }
+        } else {
+            // local
+            if (localStorage.getItem("carts")) {
+                let cartLocal = JSON.parse(localStorage.getItem("carts"));
+                if (type == 1) {
+                    cartLocal = cartLocal.map(item => {
+                        if (item.productId == productId) {
+                            item.quantity += 1;
+                        }
+                        return item
+                    })
+                    localStorage.setItem("carts", JSON.stringify(cartLocal))
+                }
+                if (type == 2) {
+
+                    for (let i in cartLocal) {
+                        if (cartLocal[i].productId == productId) {
+                            if (cartLocal[i].quantity == 1) {
+                                if (window.confirm("Ban co muon xoa khong ?")) {
+                                    cartLocal.splice(i, 1)
+                                }
+                            } else {
+                                cartLocal[i].quantity--;
+                            }
+                            break;
+                        }
+                    }
+
+                    localStorage.setItem("carts", JSON.stringify(cartLocal))
+                }
+
+                if (type == 3) {
+
+                    for (let i in cartLocal) {
+                        if (cartLocal[i].productId == productId) {
+                            cartLocal.splice(i, 1)
+                            break;
+                        }
+                    }
+
+                    localStorage.setItem("carts", JSON.stringify(cartLocal))
+                }
+                // load lai data local
+                setCartData(JSON.parse(localStorage.getItem("carts")))
+            }
+        }
     }
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -84,7 +184,7 @@ export default function CartCheckout() {
                                                 </div>
 
                                                 <div className="flex-grow-1 ms-3">
-                                                    <a href="#!" className="float-end text-black" onClick={() => handleDeleteProduct(item.productId)}>
+                                                    <a href="#!" className="float-end text-black" onClick={() => handleUpdateCart(3, item.productId)}>
                                                         <MDBIcon fas icon="times" />
                                                     </a>
                                                     <MDBTypography tag="h5" className="text-dark">
@@ -96,11 +196,8 @@ export default function CartCheckout() {
 
                                                         <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
                                                             <button type="button" class="btn btn-outline-dark"
-                                                                onClick={(e) => {
-                                                                    if (Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) > 1) {
-                                                                        e.target.parentNode.querySelector(".quantityTotalCart").innerText =
-                                                                            Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) - 1
-                                                                    }
+                                                                onClick={() => {
+                                                                    handleUpdateCart(2, item.productId)
                                                                 }}
                                                             >-</button>
 
@@ -109,9 +206,8 @@ export default function CartCheckout() {
                                                             >{item.quantity}</span>
 
                                                             <button type="button" class="btn btn-outline-dark"
-                                                                onClick={(e) => {
-                                                                    e.target.parentNode.querySelector(".quantityTotalCart").innerText =
-                                                                        Number(e.target.parentNode.querySelector(".quantityTotalCart").innerText) + 1
+                                                                onClick={() => {
+                                                                    handleUpdateCart(1, item.productId)
                                                                 }}
                                                             >+</button>
                                                         </MDBCol>

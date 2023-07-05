@@ -3,7 +3,6 @@ import './Login.scss'
 import { LeftOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Loading from '@components/Loadings/Loading'
 import { userLoginActions } from '@stores/slices/userLogin.slice'
 import { useNavigate } from 'react-router-dom'
 
@@ -20,14 +19,61 @@ export default function Login() {
                 dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
             }
         } else {
-            navigate('/')
+            let userCarts = userLoginStore.userInfor.carts;
+            if (localStorage.getItem("carts")) {
+                let localCarts = JSON.parse(localStorage.getItem("carts"));
+                if (userCarts.length == 0) {
+                    // truong hop tren mang chua co gio hang
+                    dispatch(userLoginActions.updateCart(
+                        {
+                            userId: userLoginStore.userInfor.id,
+                            carts: {
+                                carts: localCarts
+                            }
+                        }
+                    ))
+                    localStorage.removeItem('carts');
+                } else {
+                    // truong hop tren mang da co san pham
+
+                    let userCartsCopy = [];
+
+                    for (let i in userCarts) {
+                        let flag = false;
+                        for (let j in localCarts) {
+                            if (userCarts[i].productId == localCarts[j].productId) {
+                                let newObj = { ...userCarts[i] };
+                                newObj.quantity += localCarts[j].quantity;
+                                localCarts.splice(j, 1);
+                                userCartsCopy.push(newObj);
+                                flag = true;
+                                break
+                            }
+                        }
+                        if (!flag) {
+                            let newObj = { ...userCarts[i] };
+                            userCartsCopy.push(newObj);
+                        }
+                    }
+
+                    dispatch(userLoginActions.updateCart(
+                        {
+                            userId: userLoginStore.userInfor.id,
+                            carts: {
+                                carts: userCartsCopy.concat(localCarts)
+                            }
+                        }
+                    ))
+                    localStorage.removeItem('carts');
+                    navigate('/')
+                }
+            } else {
+                navigate('/')
+            }
         }
     }, [userLoginStore.userInfor])
     return (
         <div className='login_container'>
-            {
-                userLoginStore.loading ? <Loading></Loading> : <></>
-            }
             <form onSubmit={(eventForm) => {
                 eventForm.preventDefault(); // vô hiệu hành vi mặc định form
 
@@ -43,33 +89,33 @@ export default function Login() {
                     }
                 ))
 
-            }} className='login_form'> 
-                    <div className='formLogin'>
-                        <h2>LOGIN</h2>
-                        <input
-                            class="form-control"
-                            type="text"
-                            placeholder="UserName"
-                            name='inputUserName'
-                        />
-                        <input
-                            class="form-control"
-                            type="password"
-                            placeholder="Password"
-                            name='inputPassword'
-                        />
-                        <div className='btnLogin'>
-                            <div>
-                                <Link to="/"><LeftOutlined /> Return to Cart</Link>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-dark">Login</button>
-                            </div>
+            }} className='login_form'>
+                <div className='formLogin'>
+                    <h2>LOGIN</h2>
+                    <input
+                        class="form-control"
+                        type="text"
+                        placeholder="UserName"
+                        name='inputUserName'
+                    />
+                    <input
+                        class="form-control"
+                        type="password"
+                        placeholder="Password"
+                        name='inputPassword'
+                    />
+                    <div className='btnLogin'>
+                        <div>
+                            <Link to="/"><LeftOutlined /> Return to Cart</Link>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-dark">Login</button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
 
-        
+
     )
 }

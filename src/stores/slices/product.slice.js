@@ -41,6 +41,7 @@ const creatProducts = createAsyncThunk(
         return res.data
     }
 )
+
 const productSlice = createSlice({
     name: "product",
     initialState: {
