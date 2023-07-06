@@ -64,7 +64,8 @@ const userLoginSlice = createSlice(
         initialState: {
             loading: false,
             userInfor: null,
-            dependentData: false
+            dependentData: false,
+            notLogin: false,
         },
         reducers: {
             logOut: (state, action) => {
@@ -75,6 +76,11 @@ const userLoginSlice = createSlice(
             changeDependentData: (state, action) => {
                 return {
                     ...state, dependentData: !state.dependentData
+                }
+            },
+            changeNotLogin: (state, action) => {
+                return {
+                    ...state, notLogin: !state.notLogin
                 }
             }
         },

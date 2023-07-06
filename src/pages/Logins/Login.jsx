@@ -35,6 +35,7 @@ export default function Login() {
                         }
                     ))
                     localStorage.removeItem('carts');
+                    navigate('/')
                 } else {
                     // truong hop tren mang da co san pham
 
@@ -126,7 +127,7 @@ export default function Login() {
                         />
                         <div className='btnLogin'>
                             <div>
-                                <Link to="/"><LeftOutlined /> Return to Cart</Link>
+                                <Link to="/register" style={{ textDecoration: 'none', color: '#000' }}><LeftOutlined /> Return to Register</Link>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-dark">Login</button>

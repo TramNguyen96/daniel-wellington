@@ -151,7 +151,6 @@ export default function CartCheckout() {
 
                     localStorage.setItem("carts", JSON.stringify(cartLocal))
                 }
-
                 if (type == 3) {
 
                     for (let i in cartLocal) {
@@ -165,6 +164,7 @@ export default function CartCheckout() {
                 }
                 // load lai data local
                 setCartData(JSON.parse(localStorage.getItem("carts")))
+                dispatch(userLoginActions.changeNotLogin())
             }
         }
     }

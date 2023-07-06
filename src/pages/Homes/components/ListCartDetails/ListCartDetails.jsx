@@ -71,10 +71,12 @@ export default function ListCartDetails() {
                 carts?.push(buyItem)
             }
             localStorage.setItem("carts", JSON.stringify(carts));
+            dispatch(userLoginActions.changeNotLogin())
         } else {
             // chưa từng có
             let carts = [buyItem]
             localStorage.setItem("carts", JSON.stringify(carts));
+            dispatch(userLoginActions.changeNotLogin())
         }
     }
     return (
@@ -89,16 +91,16 @@ export default function ListCartDetails() {
                                 <div className='content-name'>{productStore.listProducts[0].name}</div>
                                 <div className='content-price'>{convertToUSD(productStore.listProducts[0].price)}</div>
                                 <button type="button" class="btn btn-outline-dark"
-                                        onClick={()=> {
-                                            if(quantity > 1){
-                                                setQuantity(quantity - 1)
-                                            }
-                                        }}
+                                    onClick={() => {
+                                        if (quantity > 1) {
+                                            setQuantity(quantity - 1)
+                                        }
+                                    }}
                                 >-</button>
                                 <span className='content-quantity'>{quantity}</span>
                                 <button type="button" class="btn btn-outline-dark"
-                                        onClick={() => setQuantity(quantity + 1)}
-                                >+</button><br/>
+                                    onClick={() => setQuantity(quantity + 1)}
+                                >+</button><br />
 
                                 <p className='content-text'>
                                     <ul>
@@ -108,7 +110,7 @@ export default function ListCartDetails() {
                                     </ul>
                                     <p>Cherry flowers are always beautiful, even if they're square-shaped. The Quadro Cherry Blossom combines the beauty of pastel tones with the sophisticated shimmer of genuine mother of pearl. Incrusted in a case made from rose gold plated stainless steel, this monochrome watch balances color with fine detailing and clear design lines. Wear it in spring or whenever your outfits need to bloom.</p>
                                 </p>
-                                
+
                                 <button type="button" class="btn btn-dark w-50"
                                     onClick={() => addToCart(
                                         {

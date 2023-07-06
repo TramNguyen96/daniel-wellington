@@ -1,0 +1,25 @@
+.formLogin {
+    width: 50%;
+    border: 1px solid #cdcfd2;
+    margin: 70px auto;
+
+    h2 {
+        margin: 30px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 80%;
+        margin: 20px auto;
+    }
+}
+
+.btnLogin {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+
+    button {
+        width: 200px;
+    }
+}
