@@ -47,7 +47,7 @@ export default function Navbar() {
       setCartData(userLoginStore.userInfor.carts)
     }
   }, [userLoginStore.userInfor, userLoginStore.notLogin])
-
+  console.log("userLoginStore", userLoginStore);
   return (
     <div className='containerNavbar'>
       <ToastContainer />
@@ -66,7 +66,13 @@ export default function Navbar() {
             :
             (<Link to="/" style={{ textDecoration: 'none' }} >
               <div className="dropdown">
-                <img src={userLoginStore.userInfor.avatar} alt="" className='avatar' />
+
+                {(!userLoginStore.isRegister) ?
+                  <img src={userLoginStore.userInfor.avatar} alt="" className='avatar' />
+                  :
+                  <img src={userLoginStore.userInfor.inforRegister.avatar} alt="" className='avatar' />
+                }
+
                 <div className="dropdownContent">
                   <a href="#"><i className="fa-regular fa-address-card"></i><span style={{ color: '#000' }} >Profile</span></a>
                   <a href="#" onClick={() => {
@@ -84,7 +90,12 @@ export default function Navbar() {
 
                 </div>
               </div>
-              Hi, {` ${userLoginStore.userInfor?.firstName} `}{`${userLoginStore.userInfor?.lastName}`} !
+              Hi, {(!userLoginStore.isRegister) ?
+                (userLoginStore.userInfor.firstName + " " + userLoginStore.userInfor.lastName)
+                :
+                (userLoginStore.userInfor.inforRegister.firstName + " " + userLoginStore.userInfor.inforRegister.lastName)
+              }!
+
 
             </Link>
             )

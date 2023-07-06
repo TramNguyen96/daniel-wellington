@@ -171,6 +171,105 @@
       "email": "tramnp@gmail.com",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar.jpg?alt=media&token=a55ec290-3e56-4630-bd93-f95df10f1c11",
       "carts": []
+    },
+    {
+      "userName": "phuongtram",
+      "email": "npt@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "User",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar%20account.jpg?alt=media&token=ecc551ee-08b0-42d8-9f8f-6fb478eb6370",
+      "carts": [],
+      "id": 2
+    },
+    {
+      "userName": "phuongtram1",
+      "email": "npt@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "User",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar%20account.jpg?alt=media&token=ecc551ee-08b0-42d8-9f8f-6fb478eb6370",
+      "carts": [],
+      "id": 3
+    },
+    {
+      "userName": "a",
+      "email": "npt@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "User",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar%20account.jpg?alt=media&token=ecc551ee-08b0-42d8-9f8f-6fb478eb6370",
+      "carts": [],
+      "id": 4
+    },
+    {
+      "userName": "abc",
+      "email": "npt@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "User",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar%20account.jpg?alt=media&token=ecc551ee-08b0-42d8-9f8f-6fb478eb6370",
+      "carts": [],
+      "id": 5
+    },
+    {
+      "userName": "anna",
+      "email": "anna@gmail.com",
+      "password": "1",
+      "isAdmin": false,
+      "firstName": "Anna",
+      "lastName": "Jay",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar%20account.jpg?alt=media&token=ecc551ee-08b0-42d8-9f8f-6fb478eb6370",
+      "carts": [],
+      "id": 6
+    },
+    {
+      "userName": "annaa",
+      "email": "anna@gmail.com",
+      "password": "1",
+      "isAdmin": false,
+      "firstName": "Anna",
+      "lastName": "Jay",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Fava.png?alt=media&token=1b451501-540f-4103-a16d-c414fb0be034",
+      "carts": [],
+      "id": 7
+    },
+    {
+      "userName": "annaaaa",
+      "email": "anna@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "Anna",
+      "lastName": "Jay",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Fava.png?alt=media&token=1b451501-540f-4103-a16d-c414fb0be034",
+      "carts": [],
+      "id": 8
+    },
+    {
+      "userName": "sophia",
+      "email": "sophia@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "Sophia",
+      "lastName": "James",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Fava.png?alt=media&token=1b451501-540f-4103-a16d-c414fb0be034",
+      "carts": [],
+      "id": 9
+    },
+    {
+      "userName": "hi",
+      "email": "hi@gmail.com",
+      "password": "123",
+      "isAdmin": false,
+      "firstName": "hi",
+      "lastName": "ha",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Fava.png?alt=media&token=1b451501-540f-4103-a16d-c414fb0be034",
+      "carts": [],
+      "id": 10
     }
   ]
 }

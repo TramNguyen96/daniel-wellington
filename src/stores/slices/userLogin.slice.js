@@ -16,6 +16,30 @@ const login = createAsyncThunk(
         }
     }
 )
+
+const register = createAsyncThunk(
+    "register",
+    async (inforRegister) => {
+        // localhost:4000/users
+        let res = await axios.post(process.env.REACT_APP_SERVER_JSON + 'users' , inforRegister);
+        return {
+            users: res.data,
+            inforRegister: inforRegister
+        }
+    }
+)
+
+// checkout
+const checkout = createAsyncThunk(
+    "checkout",
+    async (patchData) => {
+        // localhost:4000/users/1
+        //console.log("dataObj",dataObj)
+        let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'users/' + patchData.userId, patchData.data);
+        return res.data
+    }
+)
+
 const updateCart = createAsyncThunk(
     "updateCarts",
     async (dataObj) => {
@@ -66,6 +90,7 @@ const userLoginSlice = createSlice(
             userInfor: null,
             dependentData: false,
             notLogin: false,
+            isRegister: false
         },
         reducers: {
             logOut: (state, action) => {
@@ -111,6 +136,15 @@ const userLoginSlice = createSlice(
                     }
                 }
             });
+            // register
+            builder.addCase(register.fulfilled, (state, action) => {
+                state.userInfor = action.payload;
+                console.log("action.payload", action.payload);
+                state.isRegister = true;
+                // Mã hóa dữ liệu
+                let token = createToken(action.payload, process.env.REACT_APP_JWT_KEY);
+                localStorage.setItem("token", token);
+            });
             // update cart
             builder.addCase(updateCart.fulfilled, (state, action) => {
                 state.userInfor = action.payload
@@ -132,6 +166,10 @@ const userLoginSlice = createSlice(
                 } else {
                     localStorage.removeItem("token")
                 }
+            });
+            // chekout
+            builder.addCase(checkout.fulfilled, (state, action) => {
+                state.userInfor = action.payload;
             });
             // xử lý các pending và rejected
             builder.addMatcher(
@@ -169,6 +207,8 @@ export const userLoginActions = {
     ...userLoginSlice.actions,
     login,
     checkTokenLocal,
-    updateCart
+    updateCart,
+    register,
+    checkout
 }
 export default userLoginSlice.reducer;

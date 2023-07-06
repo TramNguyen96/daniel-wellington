@@ -11,7 +11,7 @@ import {
     MDBRow,
     MDBTypography,
 } from "mdb-react-ui-kit";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginActions } from '../../stores/slices/userLogin.slice';
 import { convertToUSD } from '@mieuteacher/meomeojs'
@@ -24,6 +24,7 @@ export default function CartCheckout() {
     const [cartData, setCartData] = useState([])
     const dispatch = useDispatch()
     const userLoginStore = useSelector(store => store.userLoginStore)
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
@@ -169,6 +170,15 @@ export default function CartCheckout() {
         }
     }
 
+    function checkOut () {
+        let patchData = {
+            userId: userLoginStore.userInfor.id,
+            data: {
+                carts: []
+            }
+        }
+        dispatch(userLoginActions.checkout(patchData))
+    }
 
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -317,10 +327,32 @@ export default function CartCheckout() {
                                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit
                                                 <a href="#!"> obcaecati sapiente</a>.
                                             </p>
+                                
+                                                <button type="button" class="btn btn-dark"
+                                                    onClick={()=>{
+                                                        if (userLoginStore.userInfor){
+                                                            checkOut()
+                                                            toast.success(
+                                                                "Thank you for your purchase!"
+                                                                , {
+                                                                    position: toast.POSITION.TOP_CENTER,
+                                                                });
 
-                                            <button type="button" class="btn btn-dark"
-
-                                            >CHECKOUT</button>
+                                                            navigate("/")
+                                                            
+                                                        }else{
+                                                            toast.error(
+                                                                "Please login to checkout!"
+                                                                , {
+                                                                    position: toast.POSITION.TOP_CENTER,
+                                                                });
+                                                        }
+                                                        
+                                                    }
+                                                }
+                                                >CHECKOUT</button>
+                                        
+                                            
 
                                             <MDBTypography
                                                 tag="h5"

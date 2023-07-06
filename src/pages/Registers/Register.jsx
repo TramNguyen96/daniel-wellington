@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Register.scss'
 import { LeftOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { userLoginActions } from '@stores/slices/userLogin.slice'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
 
 
 
@@ -14,6 +15,7 @@ export default function Register() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const userLoginStore = useSelector(store => store.userLoginStore);
+    const [loadingRegister, setLoadingRegister] = useState(false)
 
     useEffect(() => {
         if (userLoginStore.userInfor == null) {
@@ -21,69 +23,21 @@ export default function Register() {
                 dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
             }
         } else {
-            let userCarts = userLoginStore.userInfor.carts;
-            if (localStorage.getItem("carts")) {
-                let localCarts = JSON.parse(localStorage.getItem("carts"));
-                if (userCarts.length == 0) {
-                    // truong hop tren mang chua co gio hang
-                    dispatch(userLoginActions.updateCart(
-                        {
-                            userId: userLoginStore.userInfor.id,
-                            carts: {
-                                carts: localCarts
-                            }
-                        }
-                    ))
-                    localStorage.removeItem('carts');
-                } else {
-                    // truong hop tren mang da co san pham
-
-                    let userCartsCopy = [];
-
-                    for (let i in userCarts) {
-                        let flag = false;
-                        for (let j in localCarts) {
-                            if (userCarts[i].productId == localCarts[j].productId) {
-                                let newObj = { ...userCarts[i] };
-                                newObj.quantity += localCarts[j].quantity;
-                                localCarts.splice(j, 1);
-                                userCartsCopy.push(newObj);
-                                flag = true;
-                                break
-                            }
-                        }
-                        if (!flag) {
-                            let newObj = { ...userCarts[i] };
-                            userCartsCopy.push(newObj);
-                        }
-                    }
-
-                    dispatch(userLoginActions.updateCart(
-                        {
-                            userId: userLoginStore.userInfor.id,
-                            carts: {
-                                carts: userCartsCopy.concat(localCarts)
-                            }
-                        }
-                    ))
-                    localStorage.removeItem('carts');
-                    navigate('/')
-                }
-            } else {
-                navigate('/')
-                toast.success(
-                    "Login successful!"
-                    , {
-                        position: toast.POSITION.TOP_CENTER,
-                    });
-            }
+            toast.success(
+                "Register successful!"
+                , {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            navigate('/')
+            
         }
     }, [userLoginStore.userInfor])
+    console.log("sdf",userLoginStore.isRegister);
     return (
         <>
             <ToastContainer />
             <div className='login_container'>
-                <form onSubmit={(eventForm) => {
+                <form onSubmit={async(eventForm) => {
                     eventForm.preventDefault(); // vô hiệu hành vi mặc định form
 
                     if (eventForm.target.inputUserName.value == "" || eventForm.target.inputEmail.value == "" || eventForm.target.inputPassword.value == "") {
@@ -94,12 +48,38 @@ export default function Register() {
                             });
                         return
                     }
+                    if (eventForm.target.inputPassword.value != eventForm.target.inputConfirmPassword.value) {
+                        toast.error(
+                            "Please enter confirm password!"
+                            , {
+                                position: toast.POSITION.TOP_CENTER,
+                            });
+                        return
+                    }
+                    setLoadingRegister(true)
+                    let resultCheck = await axios.get(process.env.REACT_APP_SERVER_JSON + "users" + "?userName=" + eventForm.target.inputUserName.value);
+                    if (resultCheck.data.length != 0) {
+                        toast.error(
+                            "UserName already exists"
+                            , {
+                                position: toast.POSITION.TOP_CENTER,
+                            });
+                       
+                        setLoadingRegister(false)
+                        return
+                    }
+                    setLoadingRegister(false)
 
-                    dispatch(userLoginActions.login(
+                    dispatch(userLoginActions.register(
                         {
                             userName: eventForm.target.inputUserName.value,
                             email: eventForm.target.inputEmail.value,
-                            password: eventForm.target.inputPassword.value
+                            password: eventForm.target.inputPassword.value,
+                            isAdmin: false,
+                            firstName: eventForm.target.inputFirstName.value,
+                            lastName: eventForm.target.inputLastName.value,
+                            avatar:"https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Fava.png?alt=media&token=1b451501-540f-4103-a16d-c414fb0be034",
+                            carts: []
                         }
                     ))
 
