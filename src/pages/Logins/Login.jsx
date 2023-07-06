@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLoginActions } from '@stores/slices/userLogin.slice'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -69,52 +71,71 @@ export default function Login() {
                 }
             } else {
                 navigate('/')
+                toast.success(
+                    "Login successful!"
+                    , {
+                        position: toast.POSITION.TOP_CENTER,
+                    });
             }
         }
     }, [userLoginStore.userInfor])
     return (
-        <div className='login_container'>
-            <form onSubmit={(eventForm) => {
-                eventForm.preventDefault(); // vô hiệu hành vi mặc định form
+        <>
+            <ToastContainer />
+            <div className='login_container'>
+                <form onSubmit={(eventForm) => {
+                    eventForm.preventDefault(); // vô hiệu hành vi mặc định form
 
-                if (eventForm.target.inputUserName.value == "" || eventForm.target.inputPassword.value == "") {
-                    alert("vui lòng điền đầy đủ các trường")
-                    return
-                }
-
-                dispatch(userLoginActions.login(
-                    {
-                        userName: eventForm.target.inputUserName.value,
-                        password: eventForm.target.inputPassword.value
+                    if (eventForm.target.inputUserName.value == "" || eventForm.target.inputEmail.value == "" || eventForm.target.inputPassword.value == "") {
+                        toast.error(
+                            "Please complete all information!"
+                            , {
+                                position: toast.POSITION.TOP_CENTER,
+                            });
+                        return
                     }
-                ))
 
-            }} className='login_form'>
-                <div className='formLogin'>
-                    <h2>LOGIN</h2>
-                    <input
-                        class="form-control"
-                        type="text"
-                        placeholder="UserName"
-                        name='inputUserName'
-                    />
-                    <input
-                        class="form-control"
-                        type="password"
-                        placeholder="Password"
-                        name='inputPassword'
-                    />
-                    <div className='btnLogin'>
-                        <div>
-                            <Link to="/"><LeftOutlined /> Return to Cart</Link>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-dark">Login</button>
+                    dispatch(userLoginActions.login(
+                        {
+                            userName: eventForm.target.inputUserName.value,
+                            email: eventForm.target.inputEmail.value,
+                            password: eventForm.target.inputPassword.value
+                        }
+                    ))
+
+                }} className='login_form'>
+                    <div className='formLogin'>
+                        <h2>LOGIN</h2>
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="UserName"
+                            name='inputUserName'
+                        />
+                        <input
+                            class="form-control"
+                            type="email"
+                            placeholder="Email"
+                            name='inputEmail'
+                        />
+                        <input
+                            class="form-control"
+                            type="password"
+                            placeholder="Password"
+                            name='inputPassword'
+                        />
+                        <div className='btnLogin'>
+                            <div>
+                                <Link to="/"><LeftOutlined /> Return to Cart</Link>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-dark">Login</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        </>
 
 
     )

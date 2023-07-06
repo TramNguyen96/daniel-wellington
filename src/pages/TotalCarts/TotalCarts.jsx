@@ -13,15 +13,17 @@ import {
 } from "mdb-react-ui-kit";
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { productActions } from "../../stores/slices/product.slice";
 import { userLoginActions } from '../../stores/slices/userLogin.slice';
+import { convertToUSD } from '@mieuteacher/meomeojs'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export default function CartCheckout() {
     const [cartData, setCartData] = useState([])
     const dispatch = useDispatch()
-    const productStore = useSelector(store => store.productStore)
     const userLoginStore = useSelector(store => store.userLoginStore)
-    const [quantity, setQuantity] = useState(1)
 
     useEffect(() => {
         dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
@@ -68,8 +70,13 @@ export default function CartCheckout() {
                 for (let i in cartTemp) {
                     if (cartTemp[i].productId == productId) {
                         if (cartTemp[i].quantity == 1) {
-                            if (window.confirm("Ban co muon xoa khong?")) {
+                            if (window.confirm("Are you sure want to delete ?")) {
                                 cartTemp.splice(i, 1)
+                                toast.success(
+                                    "Delete successful!"
+                                    , {
+                                        position: toast.POSITION.TOP_CENTER,
+                                    });
                             }
                         } else {
                             let objTemp = Object.assign({}, cartTemp[i]);
@@ -127,8 +134,13 @@ export default function CartCheckout() {
                     for (let i in cartLocal) {
                         if (cartLocal[i].productId == productId) {
                             if (cartLocal[i].quantity == 1) {
-                                if (window.confirm("Ban co muon xoa khong ?")) {
+                                if (window.confirm("Are you sure want to delete ?")) {
                                     cartLocal.splice(i, 1)
+                                    toast.success(
+                                        "Delete successful!"
+                                        , {
+                                            position: toast.POSITION.TOP_CENTER,
+                                        });
                                 }
                             } else {
                                 cartLocal[i].quantity--;
@@ -156,6 +168,8 @@ export default function CartCheckout() {
             }
         }
     }
+
+
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
             <MDBContainer className="h-100 py-5">
@@ -211,29 +225,17 @@ export default function CartCheckout() {
                                                                 }}
                                                             >+</button>
                                                         </MDBCol>
+                                                        <MDBCol>
+                                                            <div className="d-flex justify-content-between px-x">
+                                                                <p className="fw-bold"></p>
+                                                                <p className="fw-bold"> {convertToUSD(item.price * item.quantity)} </p>
+                                                            </div>
+                                                        </MDBCol>
                                                     </div>
                                                 </div>
                                             </div>
                                         ))}
 
-
-                                        <hr
-                                            className="mb-4"
-                                            style={{
-                                                height: "2px",
-                                                backgroundColor: "#ccc",
-                                                opacity: 1,
-                                            }}
-                                        />
-
-                                        <div className="d-flex justify-content-between px-x">
-                                            <p className="fw-bold">Subtotal:</p>
-                                            <p className="fw-bold">$</p>
-                                        </div>
-                                        <div className="d-flex justify-content-between px-x">
-                                            <p className="fw-bold">Shipping:</p>
-                                            <p className="fw-bold">5$</p>
-                                        </div>
 
                                         <hr
                                             className="mb-4"
@@ -251,7 +253,11 @@ export default function CartCheckout() {
                                                 Total:
                                             </MDBTypography>
                                             <MDBTypography tag="h5" className="fw-bold mb-0">
-
+                                                {
+                                                    convertToUSD(cartData?.reduce((value, nextItem) => {
+                                                        return value + (nextItem.quantity * nextItem.price)
+                                                    }, 0))
+                                                }
                                             </MDBTypography>
                                         </div>
                                     </MDBCol>

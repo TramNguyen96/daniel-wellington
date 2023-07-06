@@ -1,4 +1,19 @@
-.inputSearch{
-    width: 100% !important;
+.form-control{
+    width: 1024px;
+    margin: auto;
+}
+.searchItems{
+    display: flex;
+    flex-wrap: wrap;
+    .searchItem{
+        width: 200px;
+        height: 300px;
+        border: 1px solid #ccc;
 
+        .searchItem-img img {
+                width: 200px;
+                height: 200px;
+            }
+    }
+    
 }

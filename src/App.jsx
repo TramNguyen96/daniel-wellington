@@ -72,10 +72,17 @@ function App() {
               import("@pages/SearchByName/SearchByName")
             )()}
           />
+          <Route
+            path="/aboutus"
+            element={LazyLoad(() =>
+              import("@pages/AboutUs/AboutUs")
+            )()}
+          />
         </Routes>
       </div>
       {/* Content Footer */}
       <div>
+        <hr style={{ width: "100%", backgroundColor: "f5f5f5" }} />
         <Footer />
       </div>
     </div>

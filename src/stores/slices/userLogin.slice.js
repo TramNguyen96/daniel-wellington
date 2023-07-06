@@ -1,5 +1,8 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const CryptoJS = require("crypto-js");
 
 const login = createAsyncThunk(
@@ -13,7 +16,6 @@ const login = createAsyncThunk(
         }
     }
 )
-
 const updateCart = createAsyncThunk(
     "updateCarts",
     async (dataObj) => {
@@ -61,12 +63,18 @@ const userLoginSlice = createSlice(
         name: "userLogin",
         initialState: {
             loading: false,
-            userInfor: null
+            userInfor: null,
+            dependentData: false
         },
         reducers: {
             logOut: (state, action) => {
                 return {
                     ...state, userInfor: null
+                }
+            },
+            changeDependentData: (state, action) => {
+                return {
+                    ...state, dependentData: !state.dependentData
                 }
             }
         },
@@ -75,10 +83,18 @@ const userLoginSlice = createSlice(
             builder.addCase(login.fulfilled, (state, action) => {
                 let user = action.payload.users.find(user => user.userName == action.payload.inforLogin.userName);
                 if (!user) {
-                    alert("Không tìm thấy người dùng")
+                    toast.error(
+                        "User not found !"
+                        , {
+                            position: toast.POSITION.TOP_CENTER,
+                        });
                 } else {
-                    if (user.password != action.payload.inforLogin.password) {
-                        alert("Mật khẩu không chính xác")
+                    if (user.password !== action.payload.inforLogin.password) {
+                        toast.error(
+                            "Password don't match !"
+                            , {
+                                position: toast.POSITION.TOP_CENTER,
+                            });
                     } else {
                         state.userInfor = user; // cập nhật lại state
                         // tạo token và lưu vào local storage

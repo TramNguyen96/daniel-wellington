@@ -29,23 +29,33 @@ const deleteProductById = createAsyncThunk(
     "deleteProductById",
     async (id) => {
         //http://localhost:4000/users/1
-        let res = await axios.delete(process.env.REACT_APP_SERVER_JSON + 'listProduct/' + id);
+        await axios.delete(process.env.REACT_APP_SERVER_JSON + 'listProduct/' + id);
         return id
     }
 )
 
-const creatProducts = createAsyncThunk(
-    "creatProducts",
-    async () => {
-        let res = await axios.post(process.env.REACT_APP_SERVER_JSON + 'listProduct');
-        return res.data
+const searchProductByName = createAsyncThunk(
+    "searchProductByName",
+    async (name) => {
+        let res = await axios.get(process.env.REACT_APP_SERVER_JSON + "listProduct?name_like=" + name);
+        return res.data;
     }
-)
+);
 
 const productSlice = createSlice({
     name: "product",
     initialState: {
+        loading: false,
         listProducts: [],
+        searchData: []
+    },
+    reducers: {
+        clearSearchData: (state, action) => {
+            return {
+                ...state,
+                searchData: []
+            }
+        }
     },
     extraReducers: (builder) => {
         // find all products
@@ -61,13 +71,18 @@ const productSlice = createSlice({
             state.listProducts = [action.payload]
         });
         // add product
-        builder.addCase(creatProducts.fulfilled, (state, action) => {
-            state.listProducts.push(action.payload)
-        });
+        // builder.addCase(creatProducts.fulfilled, (state, action) => {
+        //     state.listProducts.push(action.payload)
+        // });
         // delete product
         builder.addCase(deleteProductById.fulfilled, (state, action) => {
-            state.listProducts = state.listProducts.filter(product => product.id != action.payload)
+            state.listProducts = state.listProducts.filter(product => product.id !== action.payload)
         });
+        // search product by name
+        builder.addCase(searchProductByName.fulfilled, (state, action) => {
+            state.searchData = [...action.payload]
+            
+        })
     },
 });
 
@@ -76,8 +91,8 @@ export const productActions = {
     filterProductByType,
     findAllProducts,
     filterProductById,
-    creatProducts,
-    deleteProductById
+    deleteProductById,
+    searchProductByName
 };
 
 export default productSlice.reducer;

@@ -144,24 +144,17 @@
   "users": [
     {
       "id": 0,
-      "userName": "phuoc",
-      "password": "123",
+      "userName": "rikkeiacademy",
+      "password": "12345",
       "isAdmin": false,
-      "firstName": "Nguyen",
-      "lastName": "Phuoc",
-      "email": "tramnp@gmail.com",
-      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar.jpg?alt=media&token=a55ec290-3e56-4630-bd93-f95df10f1c11",
+      "firstName": "Rikkei",
+      "lastName": "Academy",
+      "email": "rikkeiacademy@gmail.com",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Frikkei.jpg?alt=media&token=53b004a4-423f-48b6-bb8d-1bf3ad0a0146",
       "carts": [
         {
-          "productId": "1",
-          "quantity": 7,
-          "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_1.png?alt=media&token=9fac32a1-37c6-4501-8ecb-e799e02e471c",
-          "name": "Iconic Chronograph Sheffield RG",
-          "price": "299"
-        },
-        {
           "productId": "2",
-          "quantity": 2,
+          "quantity": 3,
           "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_3.png?alt=media&token=9d42cc4c-e0de-41da-a367-2f13e860efbd",
           "name": "Petite Evergold",
           "price": "189"
@@ -177,22 +170,7 @@
       "lastName": "Nguyen",
       "email": "tramnp@gmail.com",
       "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2Favatar.jpg?alt=media&token=a55ec290-3e56-4630-bd93-f95df10f1c11",
-      "carts": [
-        {
-          "productId": "4",
-          "quantity": 3,
-          "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_5.png?alt=media&token=d5304022-0fce-42e0-874f-0073589b5fde",
-          "name": "Classic Warwick",
-          "price": "229"
-        },
-        {
-          "productId": "1",
-          "quantity": 3,
-          "img": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-78fd0.appspot.com/o/images%2FcartMen%2Fcart_men_1.png?alt=media&token=9fac32a1-37c6-4501-8ecb-e799e02e471c",
-          "name": "Iconic Chronograph Sheffield RG",
-          "price": "299"
-        }
-      ]
+      "carts": []
     }
   ]
 }

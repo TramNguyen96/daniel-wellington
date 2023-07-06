@@ -13,9 +13,10 @@ export default function Footer() {
             <div className='footer'>
                 <div>
                     <h6>SHOP</h6>
-                    <a href="">MEN'S WATCHES</a><br />
-                    <a href="">WOMEN'S WATCHES</a><br />
-                    <a href="">JEWELLERY</a><br />
+                    <a href="/shop/MenWatch">MEN'S WATCHES</a><br />
+                    <a href="/shop/WomenWatch">WOMEN'S WATCHES</a><br />
+                    <a href="/shop/Jewellery">JEWELLERY</a><br />
+                    <a href="/shop/combo">COMBO</a><br />
                 </div>
                 <div>
                     <h6>SUPPORT</h6>
